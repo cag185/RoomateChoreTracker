@@ -1,0 +1,29 @@
+<DOCTYPE=html>
+<html>
+
+<head>	<link rel="stylesheet" href="ChoreList.css">  </head>
+	<body>
+		<h1>Chores List</h1>
+		<input type="checkbox" id="Chore1">
+		<label for="Chore1">Dump the Trash</label><br>	
+
+		<input type="checkbox" id="Chore2">
+		<label for="Chore2">Do the Dishes</label><br>	
+
+		<input type="checkbox" id="Chore3">
+		<label for="Chore3">Sweep the kitchen/Living Room</label><br>	
+
+		<input type="checkbox" id="Chore4">
+		<label for="Chore4">Wipe Down Surfaces</label><br>	
+
+		<input type="checkbox" id="Chore5">
+		<label for="Chore5">Tidy Up Living Room</label><br>
+
+		<input type="checkbox" id="Chore6">
+		<label for="Chore6">Mop Floors</label><br>
+
+		<input type="checkbox" id="Chore7">
+		<label for="Chore7">Sanitize/Mop/Clean Bathrooms</label><br>	
+	</body>
+
+</html>

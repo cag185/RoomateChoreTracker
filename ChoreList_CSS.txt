@@ -1,0 +1,9 @@
+#HTML CSS File
+
+body {
+	text-align: center; 
+	font-family: Helvetica;
+	margin: auto;
+	background-color: red;
+	width: 50%;
+}
