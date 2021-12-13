@@ -45,6 +45,27 @@
 			<tr>
 				<!---Make a row for every chore->
 				<!--DUMP TRASH-->
+                <th>
+                <?php
+                /* Attempt MySQL server connection. Assuming you are running MySQL
+                server with default setting (user 'root' with password) */
+                $link = mysqli_connect("localhost", "root", "Hawking314*", "ChoreDatabase");
+ 
+                // Check connection
+                if($link === false){
+                   die("ERROR: Could not connect. " . mysqli_connect_error());
+                }
+
+                //try to create a variable for Trash and retrieve it
+                $Chore = "SELECT CHORE FROM ChoreData WHERE INDEX_=1 ";
+                $Disp = $link->query($Chore);
+                echo   $Disp;
+               // echo "Dump the Trash";
+                // Print host information
+                //echo "Connect Successfully. Host info: " . mysqli_get_host_info($link);
+
+                ?>
+                </th>
 			</tr>
 
 			<tr>
