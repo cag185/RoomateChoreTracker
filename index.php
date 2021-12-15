@@ -1,121 +1,68 @@
-<DOCTYPE=html>
-<html>
+<!DOCTYPE=html>
 
-<head>	
-<style>
-	@font-face{
-	font-family: googleFont;
-	src: url(C:\Users\17578\Desktop\Programs\WebDev\ChoreWebServer\Roboto-Regular.tff);
-	}
-	table{
-		 border-collapse: collapse;
- 		 width: 100%;
+<HTML>
+	<head>
+		<style>
+			table
+			{
+				border-collapse: collapse;
+				width: 100%;
 			}
-	td, th {
-			  border: 1px solid #dddddd;
-			  text-align: center;
-				  padding: 8px;
+			td,th{
+				border: 1px solid #dddddd;
+				text-align: center;
+				padding: 8px;
 			}
 
-	body{
-		text-size-adjust: 100%;
-		font-size: 1.25em;
-		text-align: center; 
-		font-family: Arial, Helvetica, sans-serif;
-		margin: auto;
-		background-color: white;
-		width: 100%;
-		
-</style>
-<meta name="viewport" content="width=device-width">
-</head>
+			body{
+				font-family: Arial, Helvetica, sans-serif;
+				text-align: left;
+				margin: auto;
+				font-size: 1.25em;
+				background-color: OldLace;
+				width:100%
+			}
+		</style>
+	</head>
+
 	<body>
-		<table>
-			<tr>
-				<th>Chore</th>
-				<th>Name Assigned</th>
-				<th>Name Completed</th>
-				<th>Status</th>
-				<th>Time and Date</th>
-				<th>Points earned</th>
-				<th>Due Date</th>
-				<th>Time Left</th>
-				
-			</tr>
-			<tr>
-				<!---Make a row for every chore->
-				<!--DUMP TRASH-->
-                <th>
-                <?php
-                /* Attempt MySQL server connection. Assuming you are running MySQL
-                server with default setting (user 'root' with password) */
-                $link = mysqli_connect("localhost", "root", "Hawking314*", "ChoreDatabase");
- 
-                // Check connection
-                if($link === false){
-                   die("ERROR: Could not connect. " . mysqli_connect_error());
-                }
+		<?php
+		$servername = "localhost";
+		$username = "root";
+		$password = "Hawking314*";
+		$dbname = "ChoreDatabase";
 
-                //try to create a variable for Trash and retrieve it
-                $Chore = "SELECT CHORE FROM ChoreData WHERE INDEX_=1 ";
-                $Disp = $link->query($Chore);
-                echo   $Disp;
-               // echo "Dump the Trash";
-                // Print host information
-                //echo "Connect Successfully. Host info: " . mysqli_get_host_info($link);
+		//create connection
+		$link = mysqli_connect($servername, $username, $password, $dbname);
+		//check connection
+		if($link->connection_error)
+		{
+			die("Connection failed: " . $conn->connect_error);
+		}
+		//Cant seem to load date assigned
+		//$sql = "SELECT CHORE, NAME_ASSIGNED, _STATUS, DATE_ASSIGNED, POINTS, INDEX_ FROM ChoreData";
+		$sql = "SELECT CHORE, NAME_ASSIGNED, _STATUS, POINTS, INDEX_ FROM ChoreData";
+		$result = $link->query($sql);
 
-                ?>
-                </th>
-			</tr>
+		//if($result->num_rows > -1)
+		{
+		echo "<table> <tr> <th>Chore</th> <th>Name Assigned</th> <th>Status</th> <th>Due Date</th> <th>Points</th> <th>Index</th> </tr>";
+		//echo "<table><tr><th>Chore</th><th>Name Assigned</th></tr>";
+		//output the data of each row
+		while ($row = $result->fetch_assoc()) {
+			echo "<tr><td>".$row["CHORE"]."</td><td>".$row["NAME_ASSIGNED"]."</td><td>".$row["_STATUS"]."</td><td>".$row["POINTS"]."</td><td>".$row["INDEX_"]."</td></tr>";
+			//echo "<tr><td>".$row["CHORE"]."</td><td>".$row["NAME_ASSIGNED"]."</td></tr>";
+		}
+		echo "</table>";
+		}
+		//else
+		{
+		//echo "0 results";
+		}
 
-			<tr>
-				<!--MOP LIVING ROOM-->
-			</tr>
 
-			<tr>
-				<!--MOP KITCHEN-->
-			</tr>
+		$link->close();
 
-			<tr>
-				<!--SWEEP LIVING ROOM-->
-			</tr>
-
-			<tr>
-				<!--SWEEP KITCHEN-->
-			</tr>
-
-			<tr>
-				<!--CLEAN BATHROOM UPSTAIRS-->
-			</tr>
-
-			<tr>
-				<!--CLEAN DOWNSTAIRS BATHROOM-->
-			</tr>
-
-			<tr>
-				<!--CLEAN SURFACES IN KITCHEN-->
-			</tr>
-
-			<tr>
-				<!--SWEEP MICROWAVE AND STOVETOP-->
-			</tr>
-
-			<tr>
-				<!--CLEAN LIVING ROOM-->
-			</tr>
-
-			<tr>
-				<!--CLEAN KITCHEN-->
-			</tr>
-
-			<tr>
-				<!--REFILL STUFF-->
-			</tr>
-
-			<tr>
-				<!--BRING OUT TRASH-->
-			</tr>
-
-		</table>
+		?>
 	</body>
-</html>
+</HTML> 
