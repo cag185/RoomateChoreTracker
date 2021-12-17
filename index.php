@@ -85,8 +85,8 @@
 		//echo $interval->date_format($interval, %H %i %s");
 
 		//new SQL command to update the DataBase with a Time left
-		$sql = "UPDATE ChoreData SET TIME_LEFT = " . $diffe;
-		//$sql = "UPDATE ChoreData SET TIME_LEFT  = CURRENT_TIME";
+		//$sql = "UPDATE ChoreData SET TIME_LEFT = " . $diffe;
+		$sql = "UPDATE ChoreData SET TIME_LEFT  = CURRENT_TIME";
 
 		$result = $link->query($sql);	//actually creates query to update in DB
 		//now that TIME_LEFT is updated, create a SQL command to select relevant data, create query, store query in variable
