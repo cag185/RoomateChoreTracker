@@ -40,7 +40,7 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 		else{
-			echo "Connection Successful -- Data accessable <br>";
+			//echo "Connection Successful -- Data accessable <br>";
 		}
 		//Cant seem to load date assigned
 
@@ -54,11 +54,12 @@
 		$currTime = $res["CURRENT_TIMESTAMP"];
 		$dueDate = $res["DUE_DATE"];
 		//$res = $link->query($sql);
-		echo strtotime($currTime);
-		echo "<br>";
-		echo strtotime($dueDate);
+		//echo strtotime($currTime);
+		//echo "<br>";
+		//echo strtotime($dueDate);
 
-		//----TimeDiff function
+		//----TimeDiff functiond
+		//Testing
 		function timeDiff($firstTime, $secondTime)
 		{
 			//convert to unix timestamps
@@ -71,22 +72,19 @@
 			else
 				$interval1 = $firstTime - $secondTime;
 			//format in Hours Minutes Days
-			$interval1 = date("h:i:s", $interval1);
+			$interval1 = date("H:i:s", $interval1);
 			//return 
 			return $interval1;
 		}
 
 		//create a variable to hold the difference
-		$diffe = timeDiff($dueDate, $currTime);
-		//$interval = $currTime->diff($dueDate);
-		echo "<br> New Time Difference: ";
-		echo " <br> stuff should be here <br>";
-		echo $diffe;
-		//echo $interval->date_format($interval, %H %i %s");
+		$diffe = timeDiff($currTime, $dueDate);
+		//echo the time so I can debug
+		echo "The time in diffe is: '$diffe'";
 
 		//new SQL command to update the DataBase with a Time left
-		//$sql = "UPDATE ChoreData SET TIME_LEFT = " . $diffe;
-		$sql = "UPDATE ChoreData SET TIME_LEFT  = CURRENT_TIME";
+		$sql = "UPDATE ChoreData SET TIME_LEFT = '$diffe'";
+		//$sql = "UPDATE ChoreData SET TIME_LEFT  = CURRENT_TIME";
 
 		$result = $link->query($sql);	//actually creates query to update in DB
 		//now that TIME_LEFT is updated, create a SQL command to select relevant data, create query, store query in variable
